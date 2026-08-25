@@ -110,46 +110,29 @@ $animal = mysqli_query($conexao, "SELECT * FROM animais");
                     <?php } ?>
                 </table>
             </div>
+            <?php
+            $cliente = mysqli_query($conexao, "SELECT * FROM clientes");
+            ?>
+            <?php while ($clientes = mysqli_fetch_assoc($cliente)) { ?>
 
-              <div>
-                <h2>donos Cadastrados</h2>
-                <table>
-                    <tr>
-                        <th>ID</th>
-                        <th>Nome</th>
-                        <th>Telefone</th>
-                    </tr>
-                    <?php while ($clientes = mysqli_fetch_assoc($clientes)) { ?>
+                <div>
+                    <h2>Donos Cadastrados</h2>
+                    <table>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nome</th>
+                            <th>Email</th>
+                            <th>Telefone</th>
+                            <th>Ações</th>
+                        </tr>
                         <tr>
                             <td><?php echo $clientes["id"] ?></td>
                             <td><?php echo $clientes["nome"] ?></td>
+                            <td><?php echo $clientes["email"] ?></td>
                             <td><?php echo $clientes["telefone"] ?></td>
                             <td>
                                 <a href="public/editar_cliente.php?id=<?php echo $clientes["id"] ?>">Editar</a>
                                 <a href="public/excluir_cliente.php?id=<?php echo $clientes["id"] ?>">Excluir</a>
-                            </td>
-                        </tr>
-                    <?php } ?>
-                </table>
-            </div>
-                        <th>Ações</th>
-                    </tr>
-                    <?php while ($animais = mysqli_fetch_assoc($animal)) { ?>
-                        <tr>
-                            <td><?php echo $animais["id"] ?></td>
-                            <td><?php echo $animais["nome"] ?></td>
-                            <td><?php echo $animais["especie"] ?></td>
-                            <td><?php echo $animais["raca"] ?></td>
-                            <td><?php echo $animais["idade"] ?></td>
-                            <td> <?php
-                            $clientes = mysqli_query($conexao, "SELECT * FROM clientes");
-                            while ($cliente = mysqli_fetch_assoc($clientes)) {
-                                echo "<option value='" . $cliente['id'] . "'>" . $cliente['nome'] . "</option>";
-                            }
-                            ?></td>
-                            <td>
-                                <a href="public/editar_animal.php?id=<?php echo $animais["id"] ?>">Editar</a>
-                                <a href="public/excluir_animal.php?id=<?php echo $animais["id"] ?>">Excluir</a>
                             </td>
                         </tr>
                     <?php } ?>
