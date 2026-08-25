@@ -42,8 +42,8 @@ $animal = mysqli_query($conexao, "SELECT * FROM animais");
             <label for="cliente_id">Dono:</label>
             <select name="cliente_id">
                 <?php
-                $clientes = mysqli_query($conexao, "SELECT * FROM clientes");
-                while ($cliente = mysqli_fetch_assoc($clientes)) {
+                $cliente = mysqli_query($conexao, "SELECT * FROM clientes");
+                while ($cliente = mysqli_fetch_assoc($cliente)) {
                     echo "<option value='" . $cliente['id'] . "'>" . $cliente['nome'] . "</option>";
                 }
                 ?>
@@ -65,9 +65,9 @@ $animal = mysqli_query($conexao, "SELECT * FROM animais");
             <button type="submit">Cadastrar</button>
         </form>
         <h2>listar por usuario</h2>
-        <form action="public/listar_prato_usuario.php" method="POST">
-            <label for="id_usuario">Usuário:</label>
-            <select name="id_usuario">
+        <form action="public/listar_dono.php" method="POST">
+            <label for="id">Usuário:</label>
+            <select name="id">
                 <?php
                 $clientes = mysqli_query($conexao, "SELECT * FROM clientes");
                 while ($cliente = mysqli_fetch_assoc($clientes)) {
